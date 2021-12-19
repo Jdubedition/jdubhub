@@ -1,61 +1,132 @@
+
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
+  <v-app id="inspire">
+    <v-toolbar-title
+      class="d-flex text-h2 justify-space-around align-center my-12"
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
+      JdubHub</v-toolbar-title
+    >
     <v-main>
-      <HelloWorld/>
+      <v-container>
+        <v-row>
+          <v-col v-for="site in sites" :key="site.id" cols="4">
+            <v-card height="200">
+              <v-card-text
+                class="d-flex text-h4 fill-height justify-center align-center"
+                style="position: absolute"
+                >{{ site.name }}</v-card-text
+              >
+              <div class="d-flex fill-height justify-center align-center">
+                <Gradient
+                  class="wh-full"
+                  :colors="colors"
+                  :showGradient="showGradient && site.id === siteChosenForColor"
+                />
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Vue from "vue";
+import Gradient from "./Gradient.vue";
 
 export default Vue.extend({
-  name: 'App',
+  name: "App",
 
   components: {
-    HelloWorld,
+    Gradient,
+  },
+
+  mounted: function () {
+    this.colorChanger();
+  },
+
+  methods: {
+    colorChanger: function () {
+      setInterval(() => {
+        this.colors = this.shuffle(this.colors);
+        if (this.showGradient) {
+          this.showGradient = false;
+        } else if (Math.floor(Math.random() * 3) === 0) {
+          this.showGradient = true;
+        } else {
+          this.showGradient = false;
+        }
+      }, 200);
+    },
+
+    shuffle: function (
+      array: Array<{
+        x: number;
+        y: number;
+        color_start: string;
+        color_middle: string;
+      }>
+    ) {
+      const optionsIndex = Math.floor(Math.random() * this.colorOptions.length);
+      this.siteChosenForColor = Math.floor(Math.random() * this.sites.length);
+      const randomIndex = Math.floor(Math.random() * array.length);
+      const randomValueX = Math.floor(Math.random() * 100);
+      const randomValueY = Math.floor(Math.random() * 100);
+      array[randomIndex] = {
+        x: randomValueX,
+        y: randomValueY,
+        color_start: this.colorOptions[optionsIndex],
+        color_middle: this.colorOptions[optionsIndex] + "59", // 35% opacity
+      };
+
+      return array;
+    },
   },
 
   data: () => ({
-    //
+    showGradient: true,
+    sites: [
+      {
+        id: 0,
+        name: "Bountiful Bytes",
+        url: "https://bountifulbytes.com",
+        description:
+          "An journey through the world of distributed and decentralized applications.",
+      },
+      {
+        id: 1,
+        name: "DApp One Word At A Time",
+        url: "https://dowaat.jdubedition.com",
+        description: "Decentralized application one word at a time.",
+      },
+      {
+        id: 2,
+        name: "Gradient Test",
+      },
+    ],
+    siteChosenForColor: 0,
+    colorOptions: [
+      "#ffff00", // yellow
+      "#00ff00", // green
+      "#ff0000", // red
+      "#00ffff", // cyan
+      "#ff00ff", // magenta
+      "#FF6037", // orange
+      "#FFB300", // amber
+      "#FFCC33", // sunglow
+      "#CCFF00", // lime
+      "#00CCFF", // sky blue
+      "#50BFE6", // blizzard blue
+    ],
+    colors: [
+      {
+        x: 0,
+        y: 0,
+        color_start: "#ffff00ff",
+        color_middle: "#ffff0059",
+      },
+    ],
   }),
 });
 </script>
