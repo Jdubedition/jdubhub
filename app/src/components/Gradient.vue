@@ -1,4 +1,5 @@
 <script>
+// Inspired by:  https://github.com/alexmilde/vue-gradient
 // TODO set this a TypeScript type
 const Color = require("color");
 const transitionSpeedDefault = 0.5;
