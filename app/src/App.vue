@@ -22,6 +22,21 @@
                   mouseOverCardID === site.id ? site.domain : site.name
                 }}</v-card-text
               >
+              <v-card-text
+                class="
+                  d-flex
+                  text-h8
+                  font-italic
+                  fill-height
+                  justify-center
+                  align-center
+                "
+                style="position: absolute; top: 2.5em"
+              >
+                {{
+                  mouseOverCardID === site.id ? "" : site.description
+                }}</v-card-text
+              >
               <div class="d-flex fill-height justify-center align-center">
                 <Gradient
                   class="wh-full"
@@ -61,7 +76,7 @@ export default Vue.extend({
         } else if (this.mouseOverCardID !== -1) {
           this.showGradient = true;
           this.siteChosenForColor = this.mouseOverCardID;
-        } else if (Math.floor(Math.random() * 3) === 0) {
+        } else if (Math.floor(Math.random() * 4) === 0) {
           this.showGradient = true;
         } else {
           this.showGradient = false;
@@ -110,14 +125,13 @@ export default Vue.extend({
         id: 0,
         name: "Bountiful Bytes",
         domain: "bountifulbytes.com",
-        description:
-          "An journey through the world of distributed and decentralized applications.",
+        description: "journey through the world of building software",
       },
       {
         id: 1,
         name: "DApp One Word At A Time",
         domain: "dapp-owaat.jdubedition.com",
-        description: "Decentralized application one word at a time.",
+        description: "decentralized application of one word at a time",
       },
     ],
     siteChosenForColor: 0,
