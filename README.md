@@ -1,1 +1,3 @@
-👋 Hi, I’m @Jdubedition AKA Justin Wesley.  I think technology is fantastic.
+# jdubhub
+
+The collection of software by [Jdubedition](https://github.com/Jdubedition).
