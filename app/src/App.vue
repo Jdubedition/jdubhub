@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Gradient from "./Gradient.vue";
+import Gradient from "./components/Gradient.vue";
 
 export default Vue.extend({
   name: "App",
