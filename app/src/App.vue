@@ -10,11 +10,17 @@
       <v-container>
         <v-row>
           <v-col v-for="site in sites" :key="site.id" cols="4">
-            <v-card height="200">
+            <v-card
+              @click="mouseClick(site.domain)"
+              v-on:mouseover="mouseOver(site.id)"
+              v-on:mouseleave="mouseLeave"
+            >
               <v-card-text
                 class="d-flex text-h4 fill-height justify-center align-center"
                 style="position: absolute"
-                >{{ site.name }}</v-card-text
+                >{{
+                  mouseOverCardID === site.id ? site.domain : site.name
+                }}</v-card-text
               >
               <div class="d-flex fill-height justify-center align-center">
                 <Gradient
@@ -52,6 +58,9 @@ export default Vue.extend({
         this.colors = this.shuffle(this.colors);
         if (this.showGradient) {
           this.showGradient = false;
+        } else if (this.mouseOverCardID !== -1) {
+          this.showGradient = true;
+          this.siteChosenForColor = this.mouseOverCardID;
         } else if (Math.floor(Math.random() * 3) === 0) {
           this.showGradient = true;
         } else {
@@ -82,6 +91,16 @@ export default Vue.extend({
 
       return array;
     },
+    mouseOver: function (siteID: number) {
+      this.mouseOverCardID = siteID;
+    },
+    mouseLeave: function () {
+      this.mouseOverCardID = -1;
+    },
+    mouseClick: function (domain: string) {
+      // TODO this doesn't seem to work all of the time, probably due to gradient div used for flashing
+      window.open(`https://${domain}`, "_blank");
+    },
   },
 
   data: () => ({
@@ -90,19 +109,15 @@ export default Vue.extend({
       {
         id: 0,
         name: "Bountiful Bytes",
-        url: "https://bountifulbytes.com",
+        domain: "bountifulbytes.com",
         description:
           "An journey through the world of distributed and decentralized applications.",
       },
       {
         id: 1,
         name: "DApp One Word At A Time",
-        url: "https://dowaat.jdubedition.com",
+        domain: "dapp-owaat.jdubedition.com",
         description: "Decentralized application one word at a time.",
-      },
-      {
-        id: 2,
-        name: "Gradient Test",
       },
     ],
     siteChosenForColor: 0,
@@ -127,6 +142,13 @@ export default Vue.extend({
         color_middle: "#ffff0059",
       },
     ],
+    mouseOverCardID: -1,
   }),
 });
 </script>
+
+<style>
+.v-card {
+  height: 200px;
+}
+</style>

@@ -1,4 +1,5 @@
 <script>
+// TODO set this a TypeScript type
 const Color = require("color");
 const transitionSpeedDefault = 0.5;
 
@@ -133,40 +134,9 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.1s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-
-/* .speed-03s {
-  --speed: 0.3s;
-}
-
-.speed-05s {
-  --speed: 0.5s;
-}
-
-.speed-1s {
-  --speed: 1s;
-}
-
-.speed-2s {
-  --speed: 2s;
-}
-
-.opacity-enter-active {
-  animation: opacity-in var(--speed);
-}
-.opacity-leave-active {
-  animation: opacity-in var(--speed) reverse;
-}
-@keyframes opacity-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-} */
 </style>
