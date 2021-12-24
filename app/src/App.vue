@@ -133,6 +133,12 @@ export default Vue.extend({
         domain: "dapp-owaat.jdubedition.com",
         description: "decentralized application of one word at a time",
       },
+      {
+        id: 2,
+        name: "Molereum Faucet",
+        domain: "faucet.jdubedition.com",
+        description: "faucet to receive MOLE for Molereum network",
+      },
     ],
     siteChosenForColor: 0,
     colorOptions: [
