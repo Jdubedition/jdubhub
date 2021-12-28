@@ -76,12 +76,12 @@ export default Vue.extend({
         } else if (this.mouseOverCardID !== -1) {
           this.showGradient = true;
           this.siteChosenForColor = this.mouseOverCardID;
-        } else if (Math.floor(Math.random() * 4) === 0) {
+        } else if (Math.floor(Math.random() * 3) === 0) {
           this.showGradient = true;
         } else {
           this.showGradient = false;
         }
-      }, 200);
+      }, 500);
     },
 
     shuffle: function (
@@ -113,7 +113,6 @@ export default Vue.extend({
       this.mouseOverCardID = -1;
     },
     mouseClick: function (domain: string) {
-      // TODO this doesn't seem to work all of the time, probably due to gradient div used for flashing
       window.open(`https://${domain}`, "_blank");
     },
   },

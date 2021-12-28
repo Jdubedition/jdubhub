@@ -2,7 +2,6 @@
 // Inspired by:  https://github.com/alexmilde/vue-gradient
 // TODO set this a TypeScript type
 const Color = require("color");
-const transitionSpeedDefault = 0.5;
 
 export default {
   name: "Gradient",
@@ -10,11 +9,6 @@ export default {
     colors: {
       type: Array,
       required: true,
-    },
-    transitionSpeed: {
-      type: Number,
-      required: false,
-      default: transitionSpeedDefault,
     },
     blendMode: {
       type: String,
@@ -37,21 +31,6 @@ export default {
       default: true,
     },
   },
-  mounted() {
-    if (this.supportedSpeeds.indexOf(this.transitionSpeed) == -1) {
-      (console
-        ? console.warn || console.log
-        : function (m) {
-            return m;
-          })(
-        `Gradient:\ntransition-speed of ${
-          this.transitionSpeed
-        } is unsupported.\nPlease choose from: ${this.supportedSpeeds.join(
-          " | "
-        )}`
-      );
-    }
-  },
   data() {
     return {
       supportedSpeeds: [0.3, 0.5, 1, 2],
@@ -66,14 +45,6 @@ export default {
     },
   },
   methods: {
-    transitionSpeedClass() {
-      let speedSanitzed =
-        this.supportedSpeeds.indexOf(this.transitionSpeed) == -1
-          ? transitionSpeedDefault
-          : this.transitionSpeed;
-      let speedStr = `${speedSanitzed}`.replace(".", "");
-      return `speed-${speedStr}s`;
-    },
     createStyleForConfig(config) {
       let gradients = [];
 
@@ -135,7 +106,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.1s;
+  transition: opacity 0.15s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
