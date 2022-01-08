@@ -122,18 +122,24 @@ export default Vue.extend({
     sites: [
       {
         id: 0,
+        name: "Github Repositories",
+        domain: "github.com/Jdubedition",
+        description: "publicly available repositories",
+      },
+      {
+        id: 1,
         name: "Bountiful Bytes",
         domain: "bountifulbytes.com",
         description: "journey through the world of building software",
       },
       {
-        id: 1,
+        id: 2,
         name: "DApp One Word At A Time",
         domain: "dapp-owaat.jdubedition.com",
         description: "decentralized application of one word at a time",
       },
       {
-        id: 2,
+        id: 3,
         name: "Molereum Faucet",
         domain: "faucet.jdubedition.com",
         description: "faucet to receive MOLE for Molereum network",
