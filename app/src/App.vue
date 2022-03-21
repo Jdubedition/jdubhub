@@ -144,6 +144,12 @@ export default Vue.extend({
         domain: "faucet.jdubedition.com",
         description: "faucet to receive MOLE for Molereum network",
       },
+      {
+        id: 4,
+        name: "Pearl Performance Chiropractic",
+        domain: "pearlperformancechiropractic.com",
+        description: "professional chiropractic website",
+      },
     ],
     siteChosenForColor: 0,
     colorOptions: [
