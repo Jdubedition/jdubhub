@@ -2,10 +2,13 @@
 <template>
   <v-app id="inspire">
     <v-toolbar-title
-      class="d-flex text-h2 justify-space-around align-center my-12"
+      class="d-flex text-h2 justify-space-around align-center my-10"
     >
       JdubHub</v-toolbar-title
     >
+    <v-toolbar-title
+    class="d-flex text-h5 justify-space-around align-center my-2"
+    >The collective works of software by Justin Wesley</v-toolbar-title>
     <v-main>
       <v-container>
         <v-row>
